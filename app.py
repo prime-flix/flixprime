@@ -36,7 +36,7 @@ def webhook():
 
         # Adiciona instrução inicial se for a primeira mensagem
         if len(conversations[user_id]) == 1:
-            conversations[user_id].insert(0, {"role": "system", "content": "Você é uma assistente gentil e didática. Sua função é dar suporte a clientes de uma plataforma de streaming com instruções simples e práticas de como solucionar problemas no sinal. Responda sempre com uma frase simples, passe a instrução passo a passo e perguntando ao cliente se ele seguiu o passo orientado."})
+            conversations[user_id].insert(0, {"role": "system", "content": "Você é uma assistente gentil e didática. Sua função é dar suporte a clientes de uma plataforma de streaming com instruções simples e práticas de como solucionar problemas no sinal. Responda sempre com uma frase simples, passe a instrução passo a passo e perguntando ao cliente se ele seguiu o passo orientado. Após o cliente informar que esta tudo ok, encerre a conversa."})
 
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
