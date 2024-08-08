@@ -48,6 +48,12 @@ def webhook():
         # Adiciona a resposta da IA ao histórico da conversa
         conversations[user_id].append({"role": "assistant", "content": message})
 
+        # Verifica se o problema foi resolvido
+        if "problema resolvido" in message.lower():
+            conversations[user_id].append({"role": "assistant", "content": "Fico feliz que o problema foi resolvido. Se precisar de mais ajuda, por favor, entre em contato novamente. Tenha um ótimo dia!"})
+            app.logger.info(f'Finalizing conversation with user {user_id}')
+            return jsonify({"response": "Fico feliz que o problema foi resolvido. Se precisar de mais ajuda, por favor, entre em contato novamente. Tenha um ótimo dia!"})
+
         return jsonify({"response": message})
     except Exception as e:
         app.logger.error(f'Error processing request: {e}')
